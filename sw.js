@@ -11,7 +11,9 @@ const ASSETS = [
   '/icon-512.png',
   '/logo.png',
   '/hero.png',
-  '/posts.json'
+  '/posts.json',
+  '/proof_gillot_1.png',
+  '/proof_gillot_2.png'
 ];
 
 // Installation : mise en cache des ressources statiques
