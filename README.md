@@ -108,3 +108,4 @@ Le site est optimisé pour être déployé gratuitement sur **Netlify** :
 1. Connectez votre dépôt GitHub à Netlify.
 2. Activez **Identity** dans les paramètres de votre site Netlify.
 3. Activez **Git Gateway** (dans *Identity > Services*) pour lier le CMS à votre dépôt GitHub de production.
+# Antiplateformejaune
