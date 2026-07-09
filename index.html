@@ -230,6 +230,10 @@
     <span class="tag">Le Blog d'Antiplateformejaune</span>
     <p class="body-text">Retrouvez nos notes de lecture, retours sur les réactions et analyses approfondies publiés régulièrement via notre espace d'édition.</p>
 
+    <div class="blog-search-container">
+      <input type="text" id="blog-search" placeholder="Rechercher un article (titre, tag, auteur...)" class="blog-search-input">
+    </div>
+
     <div class="blog-grid" id="blog-grid">
       <p class="body-text" id="blog-loading" style="opacity:0.6;">Chargement des articles...</p>
     </div>
@@ -286,9 +290,14 @@
   }
 
   /* ── Chargement dynamique des articles du blog ── */
+  let allPosts = [];
+
   fetch('posts.json')
     .then(r => r.ok ? r.json() : Promise.reject())
-    .then(posts => renderBlogCards(posts))
+    .then(posts => {
+      allPosts = posts;
+      renderBlogCards(posts);
+    })
     .catch(() => {
       // Si posts.json n'existe pas encore, on affiche un message d'invitation
       const grid = document.getElementById('blog-grid');
@@ -299,10 +308,27 @@
         </p>`;
     });
 
+  // Filtrer la liste à la frappe dans la barre de recherche
+  const searchInput = document.getElementById('blog-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const filtered = allPosts.filter(post => {
+        return (
+          post.title.toLowerCase().includes(query) ||
+          (post.description && post.description.toLowerCase().includes(query)) ||
+          (post.tag && post.tag.toLowerCase().includes(query)) ||
+          (post.author && post.author.toLowerCase().includes(query))
+        );
+      });
+      renderBlogCards(filtered);
+    });
+  }
+
   function renderBlogCards(posts) {
     const grid = document.getElementById('blog-grid');
     if (!posts || posts.length === 0) {
-      grid.innerHTML = `<p class="body-text" style="opacity:0.7;">Aucun article publié pour l'instant. <a href="/admin/" style="color:var(--accent);">Créez le premier →</a></p>`;
+      grid.innerHTML = `<p class="body-text" style="opacity:0.7;">Aucun article ne correspond à votre recherche.</p>`;
       return;
     }
     grid.innerHTML = posts.map(post => {
