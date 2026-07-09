@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Article — ENDEOUS</title>
+<title>Article — Antiplateformejaune</title>
 <link rel="stylesheet" href="style.css">
 <!-- Widget Netlify Identity pour les connexions admin -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -18,7 +18,7 @@
 <nav class="topnav" aria-label="Navigation principale">
   <div class="inner">
     <span class="nav-mark">
-      <img src="logo.png" alt="ENDEOUS Logo" style="height:32px; width:auto;">
+      <img src="logo.png" alt="Antiplateformejaune" style="height:32px; width:auto;">
     </span>
 
     <ul class="nav-links" role="list">
@@ -62,7 +62,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Dossier établi à partir d'informations publiques. ENDEOUS, 2026.</p>
+    <p>Dossier établi à partir d'informations publiques. Antiplateformejaune, 2026.</p>
     <p><a href="https://github.com/lignerouge/Antiplateformejaune" target="_blank" rel="noopener">Code source du site (Open Source)</a> — <a href="/admin/">Accès Administration (CMS Blog)</a></p>
   </footer>
 
@@ -114,7 +114,7 @@
         }
 
         // Mettre à jour les éléments de la page
-        document.title = `${meta.title} — ENDEOUS`;
+        document.title = `${meta.title} — Antiplateformejaune`;
         document.getElementById('post-title').textContent = meta.title;
         document.getElementById('post-tag').textContent = meta.tag;
         document.getElementById('post-date').textContent = formattedDate;
@@ -131,7 +131,7 @@
         document.getElementById('post-content').innerHTML = marked.parse(body);
       })
       .catch(err => {
-        document.title = "Erreur — ENDEOUS";
+        document.title = "Erreur — Antiplateformejaune";
         document.getElementById('post-title').textContent = "Erreur de chargement";
         document.getElementById('post-tag').textContent = "Erreur";
         document.getElementById('post-date').textContent = "Indisponible";
@@ -141,7 +141,7 @@
         `;
       });
   } else {
-    document.title = "Aucun article — ENDEOUS";
+    document.title = "Aucun article — Antiplateformejaune";
     document.getElementById('post-title').textContent = "Aucun article sélectionné";
     document.getElementById('post-tag').textContent = "Erreur";
     document.getElementById('post-date').textContent = "Indisponible";
