@@ -3,7 +3,7 @@ backend:
   branch: main # Votre branche principale Git (souvent main ou master)
 
 # Permet de tester et d'écrire des articles en local sur votre ordinateur
-local_backend: true
+# local_backend: true
 
 media_folder: "images/uploads" # Les images téléversées iront ici dans votre dépôt
 public_folder: "/images/uploads"
