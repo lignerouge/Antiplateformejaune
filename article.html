@@ -51,6 +51,9 @@
     </div>
     <span class="tag" id="post-tag">En attente</span>
     
+    <!-- Photo de couverture (affichée uniquement si définie dans le CMS) -->
+    <img id="post-cover" src="" alt="" style="display:none; width:100%; max-height:420px; object-fit:cover; border-radius:var(--radius); margin:24px 0;">
+
     <!-- Conteneur d'affichage du texte de l'article -->
     <div class="body-text" id="post-content" style="margin-top:24px;">
       <p>Veuillez patienter pendant le chargement du contenu...</p>
@@ -115,6 +118,14 @@
         document.getElementById('post-title').textContent = meta.title;
         document.getElementById('post-tag').textContent = meta.tag;
         document.getElementById('post-date').textContent = formattedDate;
+
+        // Afficher la photo de couverture si définie
+        if (meta.image) {
+          const cover = document.getElementById('post-cover');
+          cover.src = meta.image;
+          cover.alt = meta.title;
+          cover.style.display = 'block';
+        }
         
         // Rendre le markdown en HTML propre
         document.getElementById('post-content').innerHTML = marked.parse(body);

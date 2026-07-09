@@ -19,11 +19,13 @@ for f in "$POSTS_DIR"/*.md; do
   date=$(grep -m1 '^date:' "$f" | sed 's/^date: *//' | tr -d '"'"'" | cut -d'T' -f1)
   tag=$(grep -m1 '^tag:' "$f" | sed 's/^tag: *//' | tr -d '"'"'" )
   description=$(grep -m1 '^description:' "$f" | sed 's/^description: *//' | tr -d '"'"'" )
+  image=$(grep -m1 '^image:' "$f" | sed 's/^image: *//' | tr -d '"'"'" )
 
   # Valeurs par défaut si vides
   [ -z "$title" ] && title="$slug"
   [ -z "$tag" ] && tag="Article"
   [ -z "$description" ] && description=""
+  [ -z "$image" ] && image=""
 
   if [ "$first" = true ]; then
     first=false
@@ -37,7 +39,8 @@ for f in "$POSTS_DIR"/*.md; do
     "title": "$title",
     "date": "$date",
     "tag": "$tag",
-    "description": "$description"
+    "description": "$description",
+    "image": "$image"
   }
 EOF
 done
