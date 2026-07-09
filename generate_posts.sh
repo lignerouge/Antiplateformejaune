@@ -20,12 +20,14 @@ for f in "$POSTS_DIR"/*.md; do
   tag=$(grep -m1 '^tag:' "$f" | sed 's/^tag: *//' | tr -d '"'"'" )
   description=$(grep -m1 '^description:' "$f" | sed 's/^description: *//' | tr -d '"'"'" )
   image=$(grep -m1 '^image:' "$f" | sed 's/^image: *//' | tr -d '"'"'" )
+  author=$(grep -m1 '^author:' "$f" | sed 's/^author: *//' | tr -d '"'"'" )
 
   # Valeurs par défaut si vides
   [ -z "$title" ] && title="$slug"
   [ -z "$tag" ] && tag="Article"
   [ -z "$description" ] && description=""
   [ -z "$image" ] && image=""
+  [ -z "$author" ] && author="Anti Plateforme Jaune Action"
 
   if [ "$first" = true ]; then
     first=false
@@ -40,7 +42,8 @@ for f in "$POSTS_DIR"/*.md; do
     "date": "$date",
     "tag": "$tag",
     "description": "$description",
-    "image": "$image"
+    "image": "$image",
+    "author": "$author"
   }
 EOF
 done

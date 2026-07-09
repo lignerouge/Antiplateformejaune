@@ -21,4 +21,5 @@ collections:
       - { label: "Description / Résumé court", name: "description", widget: "text" }
       - { label: "Catégorie / Tag", name: "tag", widget: "string", default: "Enquête" }
       - { label: "Image de couverture", name: "image", widget: "image", required: false }
+      - { label: "Auteur", name: "author", widget: "string", default: "Anti Plateforme Jaune Action", required: false }
       - { label: "Contenu de l'article (Markdown)", name: "body", widget: "markdown" }

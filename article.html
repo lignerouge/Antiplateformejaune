@@ -117,7 +117,7 @@
         }
 
         // Formater la date si disponible
-        let formattedDate = "Blog";
+        let formattedDate = "";
         if (meta.date) {
           try {
             const dateObj = new Date(meta.date);
@@ -125,11 +125,14 @@
           } catch(e) {}
         }
 
+        const author = meta.author || 'Anti Plateforme Jaune Action';
+        const metaText = formattedDate ? `Par <strong>${author}</strong> le ${formattedDate}` : `Par <strong>${author}</strong>`;
+
         // Mettre à jour les éléments de la page
         document.title = `${meta.title} — Antiplateformejaune`;
         document.getElementById('post-title').textContent = meta.title;
         document.getElementById('post-tag').textContent = meta.tag;
-        document.getElementById('post-date').textContent = formattedDate;
+        document.getElementById('post-date').innerHTML = metaText;
 
         // Afficher la photo de couverture si définie
         if (meta.image) {
@@ -187,6 +190,11 @@
         burger.setAttribute('aria-expanded', 'false');
       });
     });
+  }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
   }
 </script>
 </body>
