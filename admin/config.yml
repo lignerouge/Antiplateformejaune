@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main # Votre branche principale Git (souvent main ou master)
+
+# Permet de tester et d'écrire des articles en local sur votre ordinateur
+local_backend: true
+
+media_folder: "images/uploads" # Les images téléversées iront ici dans votre dépôt
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Articles de Blog"
+    folder: "_posts" # Les articles seront enregistrés sous forme de fichiers .md dans ce dossier
+    create: true # Permet de créer de nouveaux articles
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
+      - { label: "Titre de l'article", name: "title", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Description / Résumé court", name: "description", widget: "text" }
+      - { label: "Catégorie / Tag", name: "tag", widget: "string", default: "Enquête" }
+      - { label: "Image de couverture", name: "image", widget: "image", required: false }
+      - { label: "Contenu de l'article (Markdown)", name: "body", widget: "markdown" }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modèle d'Article — Nom de votre Site</title>
+<!-- Lien vers la feuille de style commune -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="rail" id="rail"></div>
+
+<!-- ══ NAV COMMUNE ══ -->
+<nav class="topnav" aria-label="Navigation principale">
+  <div class="inner">
+    <span class="nav-mark">
+      <img src="logo.png" alt="ENDEOUS" style="display:none; /* décommentez si vous utilisez l'image logo */">
+      ⬡ MON BLOG / SITE
+    </span>
+
+    <!-- liens de navigation -->
+    <ul class="nav-links" role="list">
+      <li><a href="anti_plateformejaune.html">Accueil</a></li>
+      <li><a href="#article">Article</a></li>
+      <li><a href="https://www.change.org/p/stoppons-plateforme-jaune" target="_blank" rel="noopener" class="nav-btn-petition">✍ Pétition</a></li>
+    </ul>
+
+    <!-- hamburger mobile -->
+    <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- tiroir mobile -->
+  <nav class="nav-drawer" id="drawer" aria-label="Menu mobile">
+    <a href="anti_plateformejaune.html" class="drawer-link">Accueil</a>
+    <a href="#article" class="drawer-link">Article</a>
+    <a href="https://www.change.org/p/stoppons-plateforme-jaune" target="_blank" rel="noopener" class="drawer-link drawer-btn-petition">✍ Pétition Change.org</a>
+  </nav>
+</nav>
+
+<!-- ══ CONTENU DE L'ARTICLE ══ -->
+<div class="wrap">
+
+  <section class="piece" id="article" style="border-top:none; padding-top:60px;">
+    <div class="piece-head">
+      <span class="piece-num">BLOG</span>
+      <h2>Titre de votre article de blog ou page de documentation</h2>
+    </div>
+    <span class="tag">Catégorie / Tag</span>
+    
+    <p class="body-text" style="margin-bottom: 24px;">
+      Ceci est un exemple d'article utilisant la feuille de style commune. Vous pouvez copier cette structure HTML pour créer autant de pages que nécessaire. Le design s'adaptera automatiquement de manière responsive.
+    </p>
+
+    <!-- Exemple de structure de carte en vis-à-vis (comme la Dit/Fait card) si nécessaire -->
+    <div class="fault-card">
+      <div class="fault-side dit">
+        <div class="fault-label">Argument A</div>
+        <p>Exemple de texte ou citation sur la colonne de gauche.</p>
+        <cite>Source de l'argument</cite>
+      </div>
+      <div class="fault-side fait">
+        <div class="fault-label">Argument B</div>
+        <p>Exemple de texte ou fait sur la colonne de droite.</p>
+        <cite>Source du fait</cite>
+      </div>
+    </div>
+
+    <p class="verdict-line"><strong>Conclusion —</strong> Vous pouvez réutiliser les classes CSS comme <code>verdict-line</code>, <code>fault-card</code>, <code>tag</code>, <code>piece</code> et <code>body-text</code> pour conserver exactement la même charte graphique sur l'ensemble de votre site.</p>
+  </section>
+
+  <!-- FOOTER COMMUN -->
+  <footer>
+    <p>Dossier établi à partir d'informations publiques. Mon Site, 2026.</p>
+    <p>Pour plus de détails : <a href="anti_plateformejaune.html">Retour à la page principale</a>.</p>
+  </footer>
+
+</div>
+
+<script>
+  /* ── progress rail ── */
+  const rail = document.getElementById('rail');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    if (rail) rail.style.width = pct + '%';
+  }, { passive:true });
+
+  /* ── hamburger ── */
+  const burger = document.getElementById('burger');
+  const drawer = document.getElementById('drawer');
+  if (burger && drawer) {
+    burger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
+    drawer.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # 1. Le serveur Web Nginx pour afficher le site et l'admin CMS
+  web:
+    image: nginx:alpine
+    container_name: endeous_web
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/usr/share/nginx/html
+    restart: always
+
+  # 2. Le serveur Proxy Node pour que le CMS enregistre les articles directement en local
+  cms-proxy:
+    image: node:18-alpine
+    container_name: endeous_cms_proxy
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8081:8081"
+    # Installe et lance le proxy local Decap CMS
+    command: sh -c "npm install -g decap-cms-proxy && decap-cms-proxy"
+    restart: always
