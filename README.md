@@ -1,4 +1,4 @@
-# ENDEOUS — Contre-Enquête PlateformeJaune
+# ![Logo Antiplateformejaune](logo.png) Antiplateformejaune — Contre-Enquête PlateformeJaune
 
 [![Site en ligne](https://img.shields.io/badge/Site-antiplateformejaune.netlify.app-9B3A2F?style=flat)](https://antiplateformejaune.netlify.app)
 [![CMS](https://img.shields.io/badge/CMS-Decap%20CMS-f2c94c?style=flat)](https://antiplateformejaune.netlify.app/admin/)
