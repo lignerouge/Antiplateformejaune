@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Réseaux Sociaux — Antiplateformejaune</title>
+<meta name="description" content="Retrouvez Anti Plateforme Jaune Action sur X (Twitter) et TikTok.">
+<link rel="stylesheet" href="style.css">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  .social-page {
+    min-height: calc(100dvh - var(--nav-h) - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px var(--gutter);
+    text-align: center;
+  }
+  .social-logo {
+    height: 64px;
+    width: auto;
+    margin-bottom: 24px;
+    filter: brightness(1.05) contrast(1.1);
+  }
+  .social-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .social-subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 48px;
+    max-width: 480px;
+  }
+  .social-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 600px;
+  }
+  .social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 200px;
+    flex: 1;
+  }
+  .social-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+  .social-card.x-card  { border-color: rgba(255,255,255,0.12); }
+  .social-card.x-card:hover  { border-color: #fff; }
+  .social-card.tt-card { border-color: rgba(105,201,208,0.2); }
+  .social-card.tt-card:hover { border-color: #69c9d0; box-shadow: 0 8px 30px rgba(105,201,208,0.15); }
+
+  .social-icon {
+    font-size: 2.8rem;
+    line-height: 1;
+  }
+  .social-card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .social-card-handle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .social-card-btn {
+    margin-top: 4px;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .x-card .social-card-btn {
+    background: #fff;
+    color: #000;
+  }
+  .tt-card .social-card-btn {
+    background: #69c9d0;
+    color: #000;
+  }
+  .social-card-btn:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<div class="rail" id="rail"></div>
+
+<!-- NAV -->
+<nav class="topnav" aria-label="Navigation principale">
+  <div class="inner">
+    <a href="index.html" class="nav-mark"><img src="logo.png" alt="Antiplateformejaune" style="height:30px;width:auto;"></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="index.html#blog-section">Blog</a></li>
+      <li><a href="reseaux.html">Réseaux</a></li>
+      <li><a href="/admin/">Admin</a></li>
+      <li><a href="https://www.change.org/p/stoppons-plateforme-jaune" target="_blank" rel="noopener" class="nav-btn-petition">✍ Pétition</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-drawer" id="drawer" aria-label="Menu mobile">
+    <a href="index.html" class="drawer-link">Accueil</a>
+    <a href="index.html#blog-section" class="drawer-link">Blog</a>
+    <a href="reseaux.html" class="drawer-link">Réseaux sociaux</a>
+    <a href="/admin/" class="drawer-link">Admin</a>
+    <a href="https://www.change.org/p/stoppons-plateforme-jaune" target="_blank" rel="noopener" class="drawer-link drawer-btn-petition">✍ Pétition Change.org</a>
+  </nav>
+</nav>
+
+<!-- CONTENU -->
+<div class="wrap">
+  <div class="social-page">
+    <img src="logo.png" alt="Antiplateformejaune" class="social-logo">
+    <h1 class="social-title">Anti Plateforme Jaune Action</h1>
+    <p class="social-subtitle">Suivez notre action de documentation et de dénonciation sur les réseaux sociaux.</p>
+
+    <div class="social-cards">
+
+      <!-- X / Twitter -->
+      <a href="https://x.com/Franois55458342" target="_blank" rel="noopener" class="social-card x-card">
+        <div class="social-icon">𝕏</div>
+        <div class="social-card-name">X (Twitter)</div>
+        <div class="social-card-handle">@Franois55458342</div>
+        <span class="social-card-btn">Suivre sur X</span>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@anti.plateforme.j" target="_blank" rel="noopener" class="social-card tt-card">
+        <div class="social-icon">▶</div>
+        <div class="social-card-name">TikTok</div>
+        <div class="social-card-handle">@anti.plateforme.j</div>
+        <span class="social-card-btn">Suivre sur TikTok</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Dossier établi à partir d'informations publiques. Antiplateformejaune, 2026.</p>
+    <p><a href="https://github.com/lignerouge/Antiplateformejaune" target="_blank" rel="noopener">Code source (Open Source)</a> — <a href="/admin/">Administration</a></p>
+  </footer>
+</div>
+
+<script>
+  const rail = document.getElementById('rail');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    if (rail) rail.style.width = pct + '%';
+  }, { passive:true });
+
+  const burger = document.getElementById('burger');
+  const drawer = document.getElementById('drawer');
+  if (burger && drawer) {
+    burger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
+    drawer.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+</body>
+</html>
