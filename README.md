@@ -55,7 +55,7 @@ Le site intègre également une **pétition Change.org** pour demander la dissol
 ├── hero.png            # Visuel principal du mégaphone enflammé
 ├── logo.png            # Logo de la marque ENDEOUS en rouge-brun
 ├── change_org_banner.png # Bannière générée pour la pétition Change.org
-├── anti_plateformejaune.html # Page principale du dossier d'enquête
+├── index.html                # Page principale du dossier d'enquête
 ├── blog_template.html  # Modèle HTML partagé pour de futurs articles
 ├── style.css           # Feuille de style CSS commune
 └── README.md           # Ce fichier de documentation
