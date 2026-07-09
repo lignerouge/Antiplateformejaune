@@ -81,6 +81,7 @@ nav.topnav .inner {
 .nav-links {
   display: flex; gap: 18px; list-style: none;
   flex-wrap: wrap; justify-content: flex-end;
+  align-items: center;
 }
 .nav-links a { color: var(--muted); text-decoration: none; white-space: nowrap; }
 .nav-links a:hover { color: var(--ink); }
@@ -427,6 +428,8 @@ footer a { color: var(--muted); text-decoration: underline; }
   border-radius: 6px;
   background: rgba(226, 84, 61, 0.08);
   transition: all 0.2s ease;
+  align-self: center;
+  line-height: 1;
 }
 .nav-links a.nav-btn-petition:hover {
   color: #fff;
