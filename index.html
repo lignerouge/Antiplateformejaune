@@ -227,7 +227,7 @@
   <!-- BLOG SECTION -->
   <section class="piece" id="blog-section">
     <div class="piece-head"><span class="piece-num">ARTICLES</span><h2>Analyses &amp; Enquêtes complémentaires</h2></div>
-    <span class="tag">Le Blog d'ENDEOUS</span>
+    <span class="tag">Le Blog d'Antiplateformejaune</span>
     <p class="body-text">Retrouvez nos notes de lecture, retours sur les réactions et analyses approfondies publiés régulièrement via notre espace d'édition.</p>
 
     <div class="blog-grid" id="blog-grid">
@@ -321,6 +321,11 @@
           </div>
         </article>`;
     }).join('');
+  }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
   }
 </script>
 </body>
