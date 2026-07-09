@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Article — ENDEOUS</title>
+<link rel="stylesheet" href="style.css">
+<!-- Widget Netlify Identity pour les connexions admin -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- Parseur Markdown léger -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<div class="rail" id="rail"></div>
+
+<!-- ══ NAV COMMUNE ══ -->
+<nav class="topnav" aria-label="Navigation principale">
+  <div class="inner">
+    <span class="nav-mark">
+      <img src="logo.png" alt="ENDEOUS Logo" style="height:32px; width:auto;">
+    </span>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="index.html#blog-section">Blog</a></li>
+      <li><a href="/admin/">Admin</a></li>
+      <li><a href="https://www.change.org/p/stoppons-plateforme-jaune" target="_blank" rel="noopener" class="nav-btn-petition">✍ Pétition</a></li>
+    </ul>
+
+    <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="nav-drawer" id="drawer" aria-label="Menu mobile">
+    <a href="index.html" class="drawer-link">Accueil</a>
+    <a href="index.html#blog-section" class="drawer-link">Blog</a>
+    <a href="/admin/" class="drawer-link">Admin</a>
+    <a href="https://www.change.org/p/stoppons-plateforme-jaune" target="_blank" rel="noopener" class="drawer-link drawer-btn-petition">✍ Pétition Change.org</a>
+  </nav>
+</nav>
+
+<!-- ══ CONTENU DE L'ARTICLE ══ -->
+<div class="wrap">
+
+  <section class="piece" style="border-top:none; padding-top:60px;">
+    <div class="piece-head">
+      <span class="piece-num" id="post-date">Chargement...</span>
+      <h2 id="post-title">Chargement de l'article...</h2>
+    </div>
+    <span class="tag" id="post-tag">En attente</span>
+    
+    <!-- Conteneur d'affichage du texte de l'article -->
+    <div class="body-text" id="post-content" style="margin-top:24px;">
+      <p>Veuillez patienter pendant le chargement du contenu...</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Dossier établi à partir d'informations publiques. ENDEOUS, 2026.</p>
+    <p><a href="https://github.com/lignerouge/Antiplateformejaune" target="_blank" rel="noopener">Code source du site (Open Source)</a> — <a href="/admin/">Accès Administration (CMS Blog)</a></p>
+  </footer>
+
+</div>
+
+<script>
+  /* ── Lecture et rendu de l'article Markdown ── */
+  const urlParams = new URLSearchParams(window.location.search);
+  const postName = urlParams.get('post');
+
+  if (postName) {
+    // Nettoyer le nom du post pour éviter l'injection de chemin
+    const cleanPostName = postName.replace(/[^a-zA-Z0-9-_]/g, '');
+
+    fetch(`_posts/${cleanPostName}.md`)
+      .then(response => {
+        if (!response.ok) throw new Error("Article non trouvé.");
+        return response.text();
+      })
+      .then(text => {
+        // Séparer les métadonnées (YAML Front Matter) du contenu Markdown
+        const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+        
+        let body = text;
+        let meta = { title: "Article", tag: "Général", date: "" };
+
+        if (match) {
+          const yaml = match[1];
+          body = match[2];
+
+          // Parseur YAML très basique pour les chaînes clés-valeurs simples
+          yaml.split('\n').forEach(line => {
+            const parts = line.split(':');
+            if (parts.length >= 2) {
+              const key = parts[0].trim();
+              const val = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
+              meta[key] = val;
+            }
+          });
+        }
+
+        // Formater la date si disponible
+        let formattedDate = "Blog";
+        if (meta.date) {
+          try {
+            const dateObj = new Date(meta.date);
+            formattedDate = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+          } catch(e) {}
+        }
+
+        // Mettre à jour les éléments de la page
+        document.title = `${meta.title} — ENDEOUS`;
+        document.getElementById('post-title').textContent = meta.title;
+        document.getElementById('post-tag').textContent = meta.tag;
+        document.getElementById('post-date').textContent = formattedDate;
+        
+        // Rendre le markdown en HTML propre
+        document.getElementById('post-content').innerHTML = marked.parse(body);
+      })
+      .catch(err => {
+        document.title = "Erreur — ENDEOUS";
+        document.getElementById('post-title').textContent = "Erreur de chargement";
+        document.getElementById('post-tag').textContent = "Erreur";
+        document.getElementById('post-date').textContent = "Indisponible";
+        document.getElementById('post-content').innerHTML = `
+          <p>${err.message}</p>
+          <p style="margin-top:20px;"><a href="index.html">Retour à la page d'accueil</a></p>
+        `;
+      });
+  } else {
+    document.title = "Aucun article — ENDEOUS";
+    document.getElementById('post-title').textContent = "Aucun article sélectionné";
+    document.getElementById('post-tag').textContent = "Erreur";
+    document.getElementById('post-date').textContent = "Indisponible";
+    document.getElementById('post-content').innerHTML = `
+      <p>Veuillez sélectionner un article depuis la page d'accueil.</p>
+      <p style="margin-top:20px;"><a href="index.html">Retour à la page d'accueil</a></p>
+    `;
+  }
+
+  /* ── progress rail ── */
+  const rail = document.getElementById('rail');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    if (rail) rail.style.width = pct + '%';
+  }, { passive:true });
+
+  /* ── hamburger ── */
+  const burger = document.getElementById('burger');
+  const drawer = document.getElementById('drawer');
+  if (burger && drawer) {
+    burger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
+    drawer.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+</body>
+</html>

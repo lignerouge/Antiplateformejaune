@@ -220,13 +220,8 @@
     <span class="tag">Le Blog d'ENDEOUS</span>
     <p class="body-text">Retrouvez nos notes de lecture, retours sur les réactions et analyses approfondies publiés régulièrement via notre espace d'édition.</p>
 
-    <div class="blog-grid">
-      <article class="blog-card">
-        <div class="blog-card-meta"><span class="blog-card-tag">Général</span> — 9 juillet 2026</div>
-        <h3><a href="blog_template.html">Premier article d'enquête sur notre blog</a></h3>
-        <p>Ceci est le premier article généré pour valider le fonctionnement de notre CMS. Vous pouvez le modifier directement depuis l'administration.</p>
-        <a href="blog_template.html" class="blog-read-more">Lire l'article →</a>
-      </article>
+    <div class="blog-grid" id="blog-grid">
+      <p class="body-text" id="blog-loading" style="opacity:0.6;">Chargement des articles...</p>
     </div>
   </section>
 
@@ -273,6 +268,40 @@
         });
       }
     });
+  }
+
+  /* ── Chargement dynamique des articles du blog ── */
+  fetch('posts.json')
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(posts => renderBlogCards(posts))
+    .catch(() => {
+      // Si posts.json n'existe pas encore, on affiche un message d'invitation
+      const grid = document.getElementById('blog-grid');
+      grid.innerHTML = `
+        <p class="body-text" style="opacity:0.7;">
+          Aucun article publié pour l'instant.<br>
+          <a href="/admin/" style="color:var(--accent);">Créez votre premier article dans l'administration →</a>
+        </p>`;
+    });
+
+  function renderBlogCards(posts) {
+    const grid = document.getElementById('blog-grid');
+    if (!posts || posts.length === 0) {
+      grid.innerHTML = `<p class="body-text" style="opacity:0.7;">Aucun article publié pour l'instant. <a href="/admin/" style="color:var(--accent);">Créez le premier →</a></p>`;
+      return;
+    }
+    grid.innerHTML = posts.map(post => {
+      const date = post.date ? new Date(post.date).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'}) : '';
+      const tag = post.tag || 'Article';
+      const desc = post.description || '';
+      return `
+        <article class="blog-card">
+          <div class="blog-card-meta"><span class="blog-card-tag">${tag}</span>${date ? ' — ' + date : ''}</div>
+          <h3><a href="article.html?post=${post.slug}">${post.title}</a></h3>
+          <p>${desc}</p>
+          <a href="article.html?post=${post.slug}" class="blog-read-more">Lire l'article →</a>
+        </article>`;
+    }).join('');
   }
 </script>
 </body>
