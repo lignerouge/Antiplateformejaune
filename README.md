@@ -22,14 +22,19 @@ Dossier d'enquête documentant les contradictions politiques et éthiques de l'o
 
 ## Ce que documente le site
 
-6 lignes de faille entre la théorie affichée par PlateformeJaune et ses actions concrètes :
+**11 contradictions documentées** entre la théorie affichée par PlateformeJaune et ses actions concrètes :
 
-1. **Sectarisme** — programme fermé contredisant leur rejet des sectes politiques.
+1. **Sectarisme** — programme fermé en 15 points contredisant leur rejet des sectes politiques.
 2. **Soutien à ATR** — mouvance éco-extrémiste, transphobe et sexiste issue de DGR.
-3. **Antidémocratie** — doctrine de minorité auto-mandatée érigée en principe.
-4. **Anti-immigration & Validisme** — hostilité à l'immigration et pathologisation des croyants et opposants.
+3. **Antidémocratie** — doctrine de minorité auto-mandatée érigée en principe révolutionnaire.
+4. **Anti-immigration & Validisme** — hostilité à l'immigration et pathologisation des croyants.
 5. **Culte de la personnalité** — Lénine remplacé par Fanny Kaplan sans régler le problème du culte.
-6. **Harcèlement sexiste de Jean Gillot** — attaques répétées contre des militantes dont [@harunoyosei](https://x.com/harunoyosei) et [@Laurine_Off_LO](https://x.com/Laurine_Off_LO).
+6. **Harcèlement sexiste de Jean Gillot** — attaques répétées contre des militantes dont [@harunoyosei](https://x.com/harunoyosei).
+7. **Falsification de Rosa Luxemburg** — usage opportuniste de ses écrits contre leur propre programme minoritaire.
+8. **Psychiatrisation en ligne** — Gillot décrète publiquement l'état mental de ses contradicteurs.
+9. **Double standard sur les violences sexistes** — indignation historique, silence sur le harcèlement contemporain.
+10. **Négation du patriarcat** — assimilation du sexisme systémique à une prétendue « misandrie ».
+11. **Falsification de l'identité de la TCI** — la TCI qualifiée de « conseilliste » alors qu'elle est issue de la Gauche communiste italienne daministe.
 
 ---
 
@@ -62,8 +67,10 @@ Dossier d'enquête documentant les contradictions politiques et éthiques de l'o
 ├── posts.json                # Index des articles (généré automatiquement par Netlify)
 ├── generate_posts.sh         # Script de génération de posts.json
 ├── netlify.toml              # Configuration du build Netlify
-├── hero.png                  # Visuel principal
-├── logo.png                  # Logo ENDEOUS rouge-brun
+├── synthese_contradictions.md # Article de synthèse journalistique (11 points)
+├── cover_investigation.png   # Image de couverture de l'article de réponse
+├── hero.png                  # Visuel principal de la page d'accueil
+├── logo.png                  # Logo rouge-brun du site
 ├── change_org_banner.png     # Bannière pétition Change.org
 └── README.md                 # Ce fichier
 ```
@@ -111,7 +118,7 @@ docker compose down
 
 ## Utiliser le Panneau d'Administration (CMS)
 
-Rendez-vous sur `/admin` (en local) ou `https://votre-site.netlify.app/admin` (en ligne).
+Rendez-vous sur `/admin` (en local) ou `https://antiplateformejaune.netlify.app/admin` (en ligne).
 
 ### Créer un article
 
@@ -122,13 +129,15 @@ Rendez-vous sur `/admin` (en local) ou `https://votre-site.netlify.app/admin` (e
    - **Date de publication** — sélectionnez dans le calendrier.
    - **Description / Résumé** — texte court affiché sur la carte du blog.
    - **Catégorie / Tag** — label coloré (ex : « Enquête », « Analyse »).
-   - **Image de couverture** — photo affichée en miniature sur la carte ET en grand en haut de l'article. Cliquez sur le bouton pour téléverser depuis votre ordinateur.
+   - **Image de couverture** — photo affichée en miniature sur la carte ET en grand en haut de l'article.
    - **Contenu** — zone de texte Markdown avec barre d'outils (gras, italique, titres, listes, images).
 4. Cliquez sur **"Publier maintenant"**.
 
 ### Ce qui se passe après la publication
 
 Decap CMS enregistre automatiquement un fichier `.md` dans `_posts/` sur GitHub. Netlify détecte ce commit, exécute `generate_posts.sh` pour régénérer `posts.json`, et redéploie le site. L'article apparaît sur la page d'accueil **en moins d'une minute**, sans aucune commande manuelle.
+
+> **Note** : Les noms de fichiers avec des accents (é, à, ê...) sont supportés depuis le correctif de juillet 2026 (`encodeURIComponent` dans `article.html`).
 
 ---
 
@@ -158,10 +167,11 @@ Chaque article dans `_posts/` est un fichier Markdown avec des métadonnées en 
 ---
 layout: blog
 title: "Mon article"
-date: 2026-07-09T14:00:00.000Z
+date: 2026-07-12T20:00:00.000Z
 description: "Résumé court affiché sur la carte."
 tag: "Enquête"
 image: "/images/uploads/ma-photo.jpg"
+author: "Anti Plateforme Jaune Action"
 ---
 
 Contenu de l'article en **Markdown**.
@@ -169,7 +179,7 @@ Contenu de l'article en **Markdown**.
 
 ### Lecteur d'articles
 
-`article.html` lit le paramètre `?post=` dans l'URL (ex: `article.html?post=2026-07-09-mon-article`), charge le fichier `.md` correspondant via `fetch()`, parse le Markdown avec `marked.js` et affiche le résultat avec la mise en page du site.
+`article.html` lit le paramètre `?post=` dans l'URL (ex: `article.html?post=2026-07-12-mon-article`), charge le fichier `.md` correspondant via `fetch()` avec `encodeURIComponent` pour supporter les caractères accentués, parse le Markdown avec `marked.js` et affiche le résultat.
 
 ---
 
@@ -193,12 +203,17 @@ Contenu de l'article en **Markdown**.
 3. **Activer Identity + Git Gateway** :
    - Dans **Site configuration → Identity** → **"Enable Identity"**.
    - Changez Registration sur **"Invite only"**.
-   - Descendez jusqu'à **Services** → **"Enable Git Gateway"**.
+   - Descendez jusqu'à **Services** → **"Enable Git Gateway"** et autorisez l'accès GitHub.
 
 4. **Créer votre compte admin** :
    - Dans **Identity** → **"Invite users"** → entrez votre e-mail.
    - Ouvrez le mail reçu, cliquez sur le lien et définissez votre mot de passe.
-   - Connectez-vous sur `https://votre-site.netlify.app/admin`.
+   - Connectez-vous sur `https://antiplateformejaune.netlify.app/admin`.
+
+5. **Assigner le rôle admin** ⚠️ :
+   - Dans **Identity** → cliquez sur votre utilisateur.
+   - Dans le champ **Roles**, tapez `admin` et sauvegardez.
+   - Sans ce rôle, Git Gateway refusera les écritures depuis le CMS (`ACCESS_TOKEN_ERROR`).
 
 ### Désactiver le mode local avant de déployer
 
@@ -220,3 +235,4 @@ git add .
 git commit -m "description du changement"
 git push
 ```
+
