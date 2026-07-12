@@ -281,8 +281,14 @@ section.piece {
   padding: clamp(16px, 3.5vw, 26px) clamp(16px, 3.5vw, 28px);
   position: relative; z-index: 1;
 }
-.fault-side.dit  { background: #232830; }
-.fault-side.fait { background: linear-gradient(155deg, #2a1c18, #201a17); }
+.fault-side.dit  { 
+  background: #232830; 
+  padding-right: clamp(28px, 6vw, 42px); /* Évite la collision avec le tracé de fissure central */
+}
+.fault-side.fait { 
+  background: linear-gradient(155deg, #2a1c18, #201a17); 
+  padding-left: clamp(28px, 6vw, 42px);  /* Évite la collision avec le tracé de fissure central */
+}
 
 .fault-label {
   font-family: 'IBM Plex Mono', monospace;
@@ -328,7 +334,13 @@ section.piece {
 @media (max-width: 600px) {
   .fault-card { grid-template-columns: 1fr; }
   .crack { display: none; }
-  .fault-side.dit  { border-bottom: 2px solid var(--hair); }
+  .fault-side.dit  { 
+    border-bottom: 2px solid var(--hair); 
+    padding-right: clamp(16px, 3.5vw, 28px); 
+  }
+  .fault-side.fait { 
+    padding-left: clamp(16px, 3.5vw, 28px); 
+  }
 }
 
 /* ── Verdict ── */
@@ -545,6 +557,39 @@ footer a { color: var(--muted); text-decoration: underline; }
 }
 .blog-read-more:hover {
   text-decoration: underline;
+}
+
+/* ── Rebound card (réponse à leur défense de juillet 2026) ── */
+.rebound-card {
+  margin-top: 20px;
+  background: rgba(226, 84, 61, 0.05);
+  border: 1px dashed rgba(226, 84, 61, 0.35);
+  border-radius: var(--radius);
+  padding: clamp(16px, 3vw, 24px);
+  position: relative;
+}
+.rebound-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--danger);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rebound-card p {
+  font-size: 0.88rem;
+  color: #c7cad0;
+  line-height: 1.6;
+}
+.rebound-card cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
 }
 
 /* ── Reduced motion ── */
