@@ -95,10 +95,7 @@
   const postName = urlParams.get('post');
 
   if (postName) {
-    // Nettoyer le nom du post pour éviter l'injection de chemin
-    const cleanPostName = postName.replace(/[^a-zA-Z0-9-_]/g, '');
-
-    fetch(`_posts/${cleanPostName}.md`)
+    fetch(`_posts/${encodeURIComponent(postName)}.md`)
       .then(response => {
         if (!response.ok) throw new Error("Article non trouvé.");
         return response.text();
