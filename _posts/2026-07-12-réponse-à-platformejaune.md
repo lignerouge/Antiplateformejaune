@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Réponse à platformejaune "
+title: "Réponse à Plateforme Jaune "
 date: 2026-07-12T21:23:00.000+00:00
 description: >-
   
