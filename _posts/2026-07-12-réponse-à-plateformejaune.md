@@ -6,7 +6,7 @@ description: "En juillet 2026, l'organisation PlateformeJaune a tenté de
   répondre par une longue diatribe d'autodéfense à notre enquête documentée
   révélant ses dérives théoriques et comportementales. "
 tag: Enquête
-image: /images/uploads/cover_investigation.png
+image: ""
 author: Anti Plateforme Jaune Action
 ---
 PlateformeJaune : Sous le vernis révolutionnaire, le naufrage d'une imposture politique
