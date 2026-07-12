@@ -37,6 +37,7 @@ De la même manière, prétendant combattre la déification de chefs comme Léni
 
 ## Le double visage social et l'alliance avec la réaction
 
+Sur le terrain social, l'universalisme affiché par PlateformeJaune peine à masquer des positions profondément réactionnaires. L'organisation soutient activement les travaux d'Anti-Tech Resistance (ATR), un groupement marqué par un discours technophobe et transphobe. En important ces thèses au sein du mouvement ouvrier, PlateformeJaune valide des analyses idéalistes et excluantes.
 Ce glissement vers la réaction se confirme **sur la question des migrations**.
 
 Derrière une façade de solidarité internationale et de « soutien à la régularisation des sans-papiers », les écrits de l'organisation véhiculent un discours nationaliste larvé, hostile aux migrations au nom d'un prétendu « réalisme économique ».
